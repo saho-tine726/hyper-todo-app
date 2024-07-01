@@ -5,8 +5,9 @@ export const theme = extendTheme({
     global: {
       body: {
         backgroundColor: "orange.200",
-        color: "gray.800"
-      }
-    }
-  }
+        color: "gray.800",
+        fontFamily: "Noto Sans JP, sans-serif",
+      },
+    },
+  },
 });
