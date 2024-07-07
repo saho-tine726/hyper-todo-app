@@ -6,50 +6,7 @@ import { TodoForm } from "../types/todoForm";
 import { supabase } from "../utils/supabaseClient";
 
 export const useTodos = () => {
-  const [todoList, setTodoList] = useState<TodoForm[]>([
-    // {
-    //   id: "1",
-    //   title: "期限切れ",
-    //   detail: "期限切れ期限切れ期限切れ期限切れ期限切れ",
-    //   deadline: "2024-03-31",
-    //   status: "未着手",
-    // },
-    // {
-    //   id: "2",
-    //   title: "デフォルトデフォルトデフォルトデフォルト",
-    //   detail: "デフォルトデフォルトデフォルト",
-    //   deadline: "2024-01-31",
-    //   status: "未着手",
-    // },
-    // {
-    //   id: "3",
-    //   title: "デフォルトデフォルトデフォルトデフォルト",
-    //   detail: "デフォルトデフォルトデフォルト",
-    //   deadline: "2024-08-31",
-    //   status: "進行中",
-    // },
-    // {
-    //   id: "4",
-    //   title: "デフォルトデフォルトデフォルトデフォルト",
-    //   detail: "デフォルトデフォルトデフォルト",
-    //   deadline: "2024-08-31",
-    //   status: "完了",
-    // },
-    // {
-    //   id: "5",
-    //   title: "デフォルトデフォルトデフォルトデフォルト",
-    //   detail: "デフォルトデフォルトデフォルト",
-    //   deadline: "2024-08-31",
-    //   status: "未着手",
-    // },
-    // {
-    //   id: "6",
-    //   title: "デフォルトデフォルトデフォルトデフォルト",
-    //   detail: "デフォルトデフォルトデフォルト",
-    //   deadline: "2024-08-31",
-    //   status: "進行中",
-    // },
-  ]);
+  const [todoList, setTodoList] = useState<TodoForm[]>([]);
 
   const [today, setToday] = useState<string>("");
   const [currentTodo, setCurrentTodo] = useState<TodoForm | null>(null);
@@ -97,16 +54,6 @@ export const useTodos = () => {
 
   // 新しいtodoを追加したら
   const onAdd = async (data: TodoForm) => {
-    // const id = uuidv4();
-
-    // const newTodo = {
-    //   id,
-    //   title: data.title,
-    //   detail: data.detail,
-    //   deadline: data.deadline,
-    //   status: "未着手",
-    // };
-
     const newTodo = {
       id: uuidv4(),
       title: data.title,
@@ -114,17 +61,6 @@ export const useTodos = () => {
       deadline: data.deadline,
       status: "未着手",
     };
-
-    // setTodoList([...todoList, newTodo]);
-
-    // resetAddForm();
-
-    // toast({
-    //   title: "やることを追加しました！頑張りましょう！",
-    //   status: "success",
-    //   duration: 3000,
-    //   isClosable: true,
-    // });
 
     const { error } = await supabase.from("todos").insert(newTodo);
     if (error) {
@@ -144,14 +80,6 @@ export const useTodos = () => {
 
   // todo削除
   const handleDelete = async (id: string) => {
-    // setTodoList(todoList.filter((todoItem) => todoItem.id !== id));
-
-    // toast({
-    //   title: "やることを削除しました",
-    //   status: "warning",
-    //   duration: 3000,
-    //   isClosable: true,
-    // });
     const { error } = await supabase.from("todos").delete().eq("id", id);
     if (error) {
       console.error(error);
@@ -184,20 +112,6 @@ export const useTodos = () => {
 
   // todoを編集して確定したら
   const onEdit = async (data: TodoForm) => {
-    // setTodoList(
-    //   todoList.map((todoItem) =>
-    //     todoItem.id === currentTodo?.id ? { ...todoItem, ...data } : todoItem
-    //   )
-    // );
-    // setCurrentTodo(null);
-    // onClose();
-
-    // toast({
-    //   title: "やることを編集しました",
-    //   status: "success",
-    //   duration: 3000,
-    //   isClosable: true,
-    // });
     const { error } = await supabase.from('todos').update(data).eq('id', currentTodo?.id);
     if (error) {
       console.error(error);
@@ -221,17 +135,6 @@ export const useTodos = () => {
 
   // ステータスが更新された時
   const handleStatusChange = async (status: string, id: string) => {
-    // const updateTodoList = todoList.map((todoItem) => {
-    //   if (todoItem.id === id) {
-    //     return {
-    //       ...todoItem,
-    //       status: status,
-    //     };
-    //   }
-    //   return todoItem;
-    // });
-
-    // setTodoList(updateTodoList);
     const { error } = await supabase.from('todos').update({ status }).eq('id', id);
     if (error) {
       console.error(error);
