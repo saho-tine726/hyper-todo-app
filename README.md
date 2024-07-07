@@ -30,4 +30,4 @@
 * CSSはChakra UIを使用
 
 ## デモサイト
-https://hyper-todo-app-rust.vercel.app/
+https://hyper-todo-app-three.vercel.app/
