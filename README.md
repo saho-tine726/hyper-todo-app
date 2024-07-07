@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+# 高機能やることリスト
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 概要
+編集・ステータス更新・並べ替えなどの機能を搭載した、高機能のやることリストアプリです。
 
-## Available Scripts
+## 使用言語・ライブラリ・フレームワーク・ツール
+<p>
+<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB">
+<img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white">
+<img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white">
+</p>
 
-In the project directory, you can run:
+## 解説・機能など
+* 各todoに①編集、②削除、③ステータス（未着手・進行中・完了）更新機能を搭載
+* 並べ替え機能を搭載（①期限が近い順、②ステータス順（期限切れ → 未着手 → 進行中 → 完了））
 
-### `npm start`
+## データベース
+* Supabase
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 工夫点など
+* TypeScript導入
+* デザインも自作
+* ステータスを更新するとstyleが変わり、ステータス状態を一目で分かりやすくするように設定
+* formにはreact-hook-formを導入
+* 入力欄は、未入力の場合にエラー文が表示されるように設定
+* 期限は、本日より過去の日付を選択できないように設定
+* todoの追加、編集、削除時にメッセージが表示されるように設定
+* カスタムフックを使用
+* CSSはChakra UIを使用
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## デモサイト
+https://hyper-todo-app-rust.vercel.app/
