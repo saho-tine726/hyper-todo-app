@@ -1,5 +1,5 @@
 import { theme } from "./theme/theme";
-import { useTodos } from "./hooks/useTodos";
+import { getTodayDate, useTodos } from "./hooks/useTodos";
 import { Center, ChakraProvider, Container, Grid } from "@chakra-ui/react";
 import { TodoItem } from "./components/TodoItem";
 import { TodoForm } from "./components/TodoForm";
@@ -15,7 +15,6 @@ function App() {
     registerEditForm,
     handleSubmitEditForm,
     errorsEditForm,
-    today,
     onAdd,
     handleDelete,
     handleEdit,
@@ -31,6 +30,8 @@ function App() {
     sortStatus
   } = useTodos();
 
+  const today = getTodayDate();
+
   return (
     <ChakraProvider theme={theme}>
       <Container maxW={{ base: "inherit", xl: "1200px" }} p={{ base: 4, md: 10 }}>
@@ -39,7 +40,6 @@ function App() {
           onSubmit={handleSubmitAddForm(onAdd)}
           errorsAddForm={errorsAddForm}
           registerAddForm={registerAddForm}
-          today={today}
         />
 
         <Sort
@@ -58,7 +58,6 @@ function App() {
                 handleStatusChange={handleStatusChange}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
-                today={today}
               />
             ))
           }
@@ -71,7 +70,6 @@ function App() {
           errorsEditForm={errorsEditForm}
           registerEditForm={registerEditForm}
           currentTodo={currentTodo}
-          today={today}
         />
       </Container>
     </ChakraProvider >

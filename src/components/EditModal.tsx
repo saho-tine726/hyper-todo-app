@@ -1,15 +1,15 @@
 import { Box, Button, FormControl, FormErrorMessage, FormLabel, Grid, Input, InputGroup, InputLeftElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea } from "@chakra-ui/react";
 import { CalendarIcon } from '@chakra-ui/icons'
-import { TodoForm } from "../types/todoForm";
+import { Todo } from "../types/todo";
+import { getTodayDate } from "../hooks/useTodos";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: any) => void;
   errorsEditForm: any;
-  currentTodo: TodoForm | null;
+  currentTodo: Todo | null;
   registerEditForm: any;
-  today: string;
 }
 
 export const EditModal: React.FC<Props> = (props) => {
@@ -20,8 +20,9 @@ export const EditModal: React.FC<Props> = (props) => {
     errorsEditForm,
     currentTodo,
     registerEditForm,
-    today
   } = props;
+
+  const today = getTodayDate();
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">

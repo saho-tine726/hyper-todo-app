@@ -1,11 +1,11 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Grid, Input, InputGroup, InputLeftElement, Textarea } from "@chakra-ui/react";
 import { CalendarIcon } from '@chakra-ui/icons';
+import { getTodayDate } from "../hooks/useTodos";
 
 type Props = {
   onSubmit: (data: any) => void;
   errorsAddForm: any;
   registerAddForm: any;
-  today: string;
 }
 
 export const TodoForm: React.FC<Props> = (props) => {
@@ -13,8 +13,9 @@ export const TodoForm: React.FC<Props> = (props) => {
     onSubmit,
     errorsAddForm,
     registerAddForm,
-    today,
   } = props;
+
+  const today = getTodayDate();
 
   return (
     <Box mt={5} px={{ base: 5, md: 20 }} pt={{ base: 5, md: 10 }} pb={{ base: 5, md: 7 }} bg="orange.100" w={{ base: "100%", xl: "800px" }} mx="auto" boxShadow="md">
