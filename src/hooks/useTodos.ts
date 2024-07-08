@@ -8,6 +8,15 @@ import { supabase } from "../utils/supabaseClient";
 export const useTodos = () => {
   const [todoList, setTodoList] = useState<TodoForm[]>([]);
 
+  // TODO このtodayステート不要だと思います。
+  // 理由としてstateで管理しなくても変数で持っておけば良いためです！
+  // stateを選定する際は状態管理が必要な場合に使用します。今回のtodayは状態管理が必要ないため、stateを使用する必要がないです！
+  // 例として、stateを使用する場合は、以下のような場合です。
+  // 1. isModalOpen: boolean; // モーダルの開閉状態を管理する
+  // 2. count: number; // カウントアップする値を管理する（常に最新の状態を保つため）
+  // 3. user: User; // ユーザー情報を管理する（ログイン情報を保持するため）
+  // などです！stateで管理すると毎度state更新の際に再レンダリングされてしまうので今回は使用しない方がベストです。
+  // 一見便利なstateですがこのように再レンダリングを引き起こすトリガーになりますので極力使用しない方が実は良いです。
   const [today, setToday] = useState<string>("");
   const [currentTodo, setCurrentTodo] = useState<TodoForm | null>(null);
 
@@ -52,6 +61,8 @@ export const useTodos = () => {
     }
   };
 
+  // ここのcreate機能もいい感じに書けていると思います！わかりやすい！
+  // せっかくなので別の記法の可能性も覚えておきましょう。
   // 新しいtodoを追加したら
   const onAdd = async (data: TodoForm) => {
     const newTodo = {
@@ -78,6 +89,7 @@ export const useTodos = () => {
     }
   };
 
+  // 削除もOKです！
   // todo削除
   const handleDelete = async (id: string) => {
     const { error } = await supabase.from("todos").delete().eq("id", id);
@@ -103,6 +115,7 @@ export const useTodos = () => {
 
     if (todoItem) {
       setCurrentTodo(todoItem);
+      // TODO 複数回書くの面倒なので一括で更新しましょう！
       setValueEditForm("title", todoItem.title);
       setValueEditForm("detail", todoItem.detail);
       setValueEditForm("deadline", todoItem.deadline);
